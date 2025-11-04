@@ -1,0 +1,37 @@
+    {
+  "family": "metrics-service-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::681414095576:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "metrics-service",
+      "image": "681414095576.dkr.ecr.ap-south-1.amazonaws.com/metrics-service:latest",
+      "portMappings": [
+        {
+          "containerPort": 5003,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "environment": [
+        { "name": "PORT", "value": "5003" },
+        { "name": "DB_HOST", "value": "database-2.c7sciqg04r0x.ap-south-1.rds.amazonaws.com" },
+        { "name": "DB_USER", "value": "admin" },
+        { "name": "DB_PASSWORD", "value": "data1234" },
+        { "name": "DB_NAME", "value": "database-2" },
+        { "name": "DB_PORT", "value": "3306" }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/metrics-service",
+          "awslogs-region": "ap-south-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}

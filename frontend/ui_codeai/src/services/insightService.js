@@ -5,7 +5,7 @@ import api from './api.js';
  */
 class InsightService {
   constructor() {
-    this.baseUrl = api.API_BASE.INSIGHT_SERVICE;
+    this.baseUrl = api.API_BASE.VITE_INSIGHT_SERVICE_URL;
   }
 
   /**

@@ -8,7 +8,11 @@ import notifyRoutes from "./routes/notify.routes.js";
 const app = express();
 const PORT = process.env.PORT || 5004;
 
-app.use(cors());
+app.use(cors({
+  origin: "*",  // for quick test; restrict later
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 app.use(express.json());
 
 app.use("/notify", notifyRoutes);

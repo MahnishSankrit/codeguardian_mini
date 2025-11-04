@@ -1,28 +1,18 @@
 import api from './api.js';
 
-/**
- * Metrics Service - Developer metrics and analytics
- */
 class MetricsService {
   constructor() {
-    this.baseUrl = api.API_BASE.METRICS_SERVICE;
+    // keep if you need direct base, but prefer calling api.api with alias below
+    this.baseUrl = api.API_BASE.VITE_METRICS_SERVICE_URL;
   }
 
-  /**
-   * Get developer metrics (commits per developer)
-   * @returns {Promise<Array>} Metrics data
-   */
   async getMetrics() {
-    return api.apiCall(`${this.baseUrl}/metrics`);
+    // use service alias so builds pick up VITE_* correctly
+    return api.api('/metrics', 'METRICS_SERVICE');
   }
 
-  /**
-   * Push a metric to the service
-   * @param {Object} metric - Metric data to push
-   * @returns {Promise<Object>} Success response
-   */
   async pushMetric(metric) {
-    return api.apiCall(`${this.baseUrl}/metrics`, {
+    return api.api('/metrics', 'METRICS_SERVICE', {
       method: 'POST',
       body: JSON.stringify(metric)
     });
@@ -30,4 +20,3 @@ class MetricsService {
 }
 
 export default new MetricsService();
-

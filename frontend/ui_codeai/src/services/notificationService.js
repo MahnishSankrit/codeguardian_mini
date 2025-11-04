@@ -5,7 +5,7 @@ import api from './api.js';
  */
 class NotificationService {
   constructor() {
-    this.baseUrl = api.API_BASE.NOTIFICATION_SERVICE;
+    this.baseUrl = api.API_BASE.VITE_NOTIFICATION_SERVICE_URL;
   }
 
   /**

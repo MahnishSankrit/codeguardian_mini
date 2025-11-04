@@ -68,7 +68,7 @@ const RepoDiscovery = () => {
     }
   };
 
-  // 🤖 Send diff to AI review service
+  //  Send diff to AI review service
   const reviewCommit = async () => {
     if (!commitDiff) {
       setError("Please load commit code first.");

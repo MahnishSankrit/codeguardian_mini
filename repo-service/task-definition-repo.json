@@ -1,0 +1,46 @@
+{
+  "family": "repo-service-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::681414095576:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "repo-service",
+      "image": "681414095576.dkr.ecr.ap-south-1.amazonaws.com/repo-service:latest",
+      "portMappings": [
+        {
+          "containerPort": 5001,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "environment": [
+        { "name": "PORT", "value": "5001" },
+        { "name": "DB_HOST", "value": "database-2.c7sciqg04r0x.ap-south-1.rds.amazonaws.com" },
+        { "name": "DB_USER", "value": "admin" },
+        { "name": "DB_NAME", "value": "database-2" },
+        { "name": "DB_PORT", "value": "3306" }
+      ],
+      "secrets": [
+        {
+          "name": "DB_PASSWORD",
+          "valueFrom": "arn:aws:secretsmanager:ap-south-1:681414095576:secret:repo-service/DB_SECRET-JbjC4j"
+        },
+        {
+          "name": "GITHUB_TOKEN",
+          "valueFrom": "arn:aws:secretsmanager:ap-south-1:681414095576:secret:repo-service/GITHUB_TOKEN-4ODMVf"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/repo-service",
+          "awslogs-region": "ap-south-1",
+          "awslogs-stream-prefix": "repo"
+        }
+      }
+    }
+  ]
+}

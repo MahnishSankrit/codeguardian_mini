@@ -6,7 +6,11 @@ import metricsRoutes from "./routes/metrics.routes.js";
 dotenv.config();
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "*",  // for quick test; restrict later
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 app.use(express.json());
 
 app.use("/api", metricsRoutes);

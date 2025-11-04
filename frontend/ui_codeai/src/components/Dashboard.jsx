@@ -17,6 +17,11 @@ const Dashboard = () => {
     { developer: 'Emily Davis', commits: 22 }
   ];
 
+//   const handleViewCommit = (commit) => {
+//   setSelectedCommit(commit);
+//   setActiveTab("review"); // move user to review tab automatically
+// };
+
   useEffect(() => {
     loadDashboardData();
   }, []);
@@ -61,7 +66,7 @@ const Dashboard = () => {
     <div className="space-y-4 md:space-y-6 animate-fade-in">
       {/* Demo Mode Banner */}
       {metrics.length > 0 && metrics[0].developer === demoMetrics[0].developer && (
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-4 shadow-sm">
+        <div className="bg-linear-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-4 shadow-sm">
           <div className="flex items-start">
             <div className="flex-shrink-0">
               <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -84,7 +89,7 @@ const Dashboard = () => {
         <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 overflow-hidden group">
           <div className="p-5 md:p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 bg-linear-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                 <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -100,7 +105,7 @@ const Dashboard = () => {
         <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 overflow-hidden group">
           <div className="p-5 md:p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 bg-linear-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                 <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
@@ -116,7 +121,7 @@ const Dashboard = () => {
         <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 overflow-hidden group sm:col-span-2 lg:col-span-1">
           <div className="p-5 md:p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 bg-linear-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                 <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -132,7 +137,7 @@ const Dashboard = () => {
       {/* Top Developers */}
       {topDevelopers.length > 0 && (
         <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden">
-          <div className="px-4 md:px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white">
+          <div className="px-4 md:px-6 py-4 border-b border-gray-200 bg-linear-to-r from-gray-50 to-white">
             <div className="flex items-center justify-between">
               <h3 className="text-lg md:text-xl font-bold text-gray-800 flex items-center">
                 <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -163,7 +168,7 @@ const Dashboard = () => {
                   </div>
                   <div className="w-20 md:w-32 bg-gray-200 rounded-full h-2 ml-4">
                     <div
-                      className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-300"
+                      className="bg-linear-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-300"
                       style={{ width: `${(dev.commits / totalCommits) * 100}%` }}
                     ></div>
                   </div>
@@ -176,9 +181,9 @@ const Dashboard = () => {
 
       {/* Insights Banner */}
       {insights?.aiInsights && (
-        <div className="bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 rounded-xl p-6 md:p-8 text-white shadow-xl">
+        <div className="bg-linear-to-r from-blue-500 via-purple-600 to-pink-500 rounded-xl p-6 md:p-8 text-white shadow-xl">
           <div className="flex items-start">
-            <div className="flex-shrink-0">
+            <div className="flex shrink-0">
               <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
               </svg>

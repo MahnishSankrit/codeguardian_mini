@@ -2,21 +2,23 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy package files
+# Copy package files first (for better caching)
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Install dependencies (production only)
+RUN npm install --omit=dev
 
-# Copy application code
+
+
+# Copy app source
 COPY . .
 
-# Expose service port
+# Expose the port
 EXPOSE 5002
 
-# Health check
+# Healthcheck endpoint (uses /health)
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:5002/health', (r) => { process.exit(r.statusCode === 200 ? 0 : 1); });"
+  CMD wget -qO- http://localhost:5002/health || exit 1
 
-# Start the service
+# Start app
 CMD ["npm", "start"]
